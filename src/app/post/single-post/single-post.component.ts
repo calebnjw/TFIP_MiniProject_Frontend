@@ -1,8 +1,10 @@
-import { Component } from "@angular/core";
+import { Component } from '@angular/core';
 
 @Component({
-  selector: "app-single-post",
-  templateUrl: "./single-post.component.html",
-  styleUrls: ["./single-post.component.css"],
+  selector: 'app-single-post',
+  templateUrl: './single-post.component.html',
+  styleUrls: ['./single-post.component.css']
 })
-export class SinglePostComponent {}
+export class SinglePostComponent {
+
+}
