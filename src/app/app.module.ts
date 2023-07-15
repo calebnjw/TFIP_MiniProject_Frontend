@@ -2,60 +2,30 @@ import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 
 import { AppComponent } from "./app.component";
-import { IndexComponent } from "./index/index.component";
-import { AllPostsComponent } from "./profile/all-posts/all-posts.component";
-import { SinglePostComponent } from "./post/single-post/single-post.component";
-import { NewPostComponent } from "./post/new-post/new-post.component";
-import { LoginComponent } from "./login/login.component";
-import { RouterModule, Routes } from "@angular/router";
-import { HomeComponent } from "./home/home.component";
-import { FeedComponent } from "./feed/feed.component";
-import { PostOutletComponent } from "./post/post-outlet/post-outlet.component";
-import { PageNotFoundComponent } from "./page-not-found/page-not-found.component";
-import { ProfileOutletComponent } from "./profile/profile-outlet/profile-outlet.component";
+import { AppRoutingModule } from "./app-routing.module";
 
-const appRoutes: Routes = [
-  {
-    path: "",
-    component: IndexComponent,
-    title: "Not Threads",
-    children: [
-      // make two more components for regular home page and feed for logged out and logged in states respectively
-      { path: "home", component: IndexComponent, title: "Not Threads" },
-      { path: "login", component: LoginComponent },
-      {
-        path: "user",
-        component: ProfileOutletComponent,
-        children: [{ path: ":user_id", component: AllPostsComponent }],
-      },
-      {
-        path: "post",
-        component: PostOutletComponent,
-        children: [
-          { path: "new", component: NewPostComponent },
-          { path: ":post_id", component: SinglePostComponent },
-        ],
-      },
-    ],
-  },
-  { path: "**", component: PageNotFoundComponent },
-];
+import { FeedComponent } from "./feed/feed.component";
+import { HomeComponent } from "./home/home.component";
+import { IndexComponent } from "./index/index.component";
+import { LoginComponent } from "./login/login.component";
+import { NewPostComponent } from "./post/new-post/new-post.component";
+import { PageNotFoundComponent } from "./page-not-found/page-not-found.component";
+import { ProfileComponent } from "./profile/profile.component";
+import { SinglePostComponent } from "./post/single-post/single-post.component";
 
 @NgModule({
   declarations: [
     AppComponent,
-    AllPostsComponent,
     IndexComponent,
     LoginComponent,
     NewPostComponent,
     SinglePostComponent,
     HomeComponent,
     FeedComponent,
-    PostOutletComponent,
+    ProfileComponent,
     PageNotFoundComponent,
-    ProfileOutletComponent,
   ],
-  imports: [BrowserModule, RouterModule.forRoot(appRoutes)],
+  imports: [BrowserModule, AppRoutingModule],
   providers: [],
   bootstrap: [AppComponent],
 })

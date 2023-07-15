@@ -5,4 +5,6 @@ import { Component } from "@angular/core";
   templateUrl: "./new-post.component.html",
   styleUrls: ["./new-post.component.css"],
 })
-export class NewPostComponent {}
+export class NewPostComponent {
+  constructor(private location: Location) {}
+}
