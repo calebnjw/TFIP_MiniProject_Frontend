@@ -1,0 +1,78 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="mb-4">
+        <h1>Login</h1>
+        <p>Have an account with us? Login here!</p>
+      </div>
+      <form [formGroup]="loginFormGroup" (submit)="userLogin()">
+        <div class="form-floating mb-3">
+          <input
+            type="text"
+            name="username"
+            id="username"
+            class="form-control"
+            formControlName="username"
+            placeholder="Username"
+          />
+          <label for="username" class="form-label">Username</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input
+            type="password"
+            name="password"
+            id="password"
+            class="form-control"
+            formControlName="password"
+            placeholder="Password"
+          />
+          <label for="password" class="form-label">Password</label>
+        </div>
+        <input type="submit" value="Login" [disabled]="loginFormGroup.invalid" />
+      </form>
+    </div>
+
+    <div class="col-md-4">
+      <div class="mb-4">
+        <h1>Sign Up</h1>
+        <p>Not interested in seeing what other people are sharing? Sign up here!</p>
+      </div>
+      <form [formGroup]="signupFormGroup" (submit)="userSignup()">
+        <div class="form-floating mb-3">
+          <input
+            type="text"
+            name="username"
+            id="username"
+            class="form-control"
+            formControlName="username"
+            placeholder="Username"
+          />
+          <label for="username" class="form-label">Username</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input
+            type="email"
+            name="email"
+            id="email"
+            class="form-control"
+            formControlName="email"
+            placeholder="Email"
+          />
+          <label for="email" class="form-label">Email</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input
+            type="password"
+            name="password"
+            id="password"
+            class="form-control"
+            formControlName="password"
+            placeholder="Password"
+          />
+          <label for="password" class="form-label">Password</label>
+        </div>
+        <input type="submit" value="Sign Up" [disabled]="signupFormGroup.invalid" />
+      </form>
+    </div>
+  </div>
+</div>

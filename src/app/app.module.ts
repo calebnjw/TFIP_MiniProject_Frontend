@@ -1,31 +1,42 @@
 import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
+import { HttpClientModule } from "@angular/common/http";
 
 import { AppComponent } from "./app.component";
 import { AppRoutingModule } from "./app-routing.module";
+import { ReactiveFormsModule } from "@angular/forms";
 
-import { FeedComponent } from "./feed/feed.component";
-import { HomeComponent } from "./home/home.component";
-import { IndexComponent } from "./index/index.component";
-import { LoginComponent } from "./login/login.component";
-import { NewPostComponent } from "./post/new-post/new-post.component";
-import { PageNotFoundComponent } from "./page-not-found/page-not-found.component";
-import { ProfileComponent } from "./profile/profile.component";
-import { SinglePostComponent } from "./post/single-post/single-post.component";
+import { PublicComponent } from "./views/public/public.component";
+import { HomeComponent } from "./views/public/home/home.component";
+import { LoginComponent } from "./views/public/login/login.component";
+import { PrivateComponent } from "./views/private/private.component";
+import { FeedComponent } from "./views/private/feed/feed.component";
+import { ProfileComponent } from "./views/private/profile/profile.component";
+import { NewPostComponent } from "./views/private/post/new-post/new-post.component";
+import { SinglePostComponent } from "./views/private/post/single-post/single-post.component";
+import { PageNotFoundComponent } from "./views/page-not-found/page-not-found.component";
+
+import { NavbarHomeComponent } from "./components/navbar/navbar-home/navbar-home.component";
+import { NavbarAppComponent } from "./components/navbar/navbar-app/navbar-app.component";
+import { TweetComponent } from "./components/tweet/tweet.component";
 
 @NgModule({
   declarations: [
     AppComponent,
-    IndexComponent,
-    LoginComponent,
-    NewPostComponent,
-    SinglePostComponent,
+    PublicComponent,
     HomeComponent,
+    LoginComponent,
+    PrivateComponent,
     FeedComponent,
     ProfileComponent,
+    NewPostComponent,
+    SinglePostComponent,
     PageNotFoundComponent,
+    NavbarHomeComponent,
+    NavbarAppComponent,
+    TweetComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule, ReactiveFormsModule],
   providers: [],
   bootstrap: [AppComponent],
 })

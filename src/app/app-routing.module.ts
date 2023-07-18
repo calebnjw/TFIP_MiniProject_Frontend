@@ -1,39 +1,61 @@
 import { Injectable, NgModule } from "@angular/core";
 import { RouterModule, RouterStateSnapshot, Routes, TitleStrategy } from "@angular/router";
 
-import { IndexComponent } from "./index/index.component";
-import { LoginComponent } from "./login/login.component";
-import { PageNotFoundComponent } from "./page-not-found/page-not-found.component";
-import { NewPostComponent } from "./post/new-post/new-post.component";
-import { SinglePostComponent } from "./post/single-post/single-post.component";
-import { ProfileComponent } from "./profile/profile.component";
 import { Title } from "@angular/platform-browser";
+
+import { PublicComponent } from "./views/public/public.component";
+import { HomeComponent } from "./views/public/home/home.component";
+import { LoginComponent } from "./views/public/login/login.component";
+import { PrivateComponent } from "./views/private/private.component";
+import { FeedComponent } from "./views/private/feed/feed.component";
+import { ProfileComponent } from "./views/private/profile/profile.component";
+import { NewPostComponent } from "./views/private/post/new-post/new-post.component";
+import { SinglePostComponent } from "./views/private/post/single-post/single-post.component";
+import { PageNotFoundComponent } from "./views/page-not-found/page-not-found.component";
 
 const routes: Routes = [
   {
     path: "",
-    component: IndexComponent,
-    title: "Not Threads",
-    // no children, but uses auth service to check if user is logged in.
-    // will show regular home page if user is logged out.
-    // will show feed if user is logged in.
+    component: PublicComponent,
+    children: [
+      { path: "", redirectTo: "home", pathMatch: "full" },
+      {
+        path: "home",
+        title: "Not Threads",
+        component: HomeComponent,
+        // no children, but uses auth service to check if user is logged in.
+        // will show regular home page if user is logged out.
+        // will show feed if user is logged in.
+      },
+      {
+        path: "login",
+        title: "Not Threads — Login",
+        component: LoginComponent,
+      },
+    ],
   },
   {
-    path: "login",
-    title: "Not Threads — Login",
-    component: LoginComponent,
-  },
-  {
-    path: "user/:user_id",
-    component: ProfileComponent,
-  },
-  {
-    path: "post/new",
-    component: NewPostComponent,
-  },
-  {
-    path: "post/:post_id",
-    component: SinglePostComponent,
+    path: "app",
+    component: PrivateComponent,
+    children: [
+      { path: "", redirectTo: "feed", pathMatch: "full" },
+      {
+        path: "feed",
+        component: FeedComponent,
+      },
+      {
+        path: "user/:user_id",
+        component: ProfileComponent,
+      },
+      {
+        path: "post/new",
+        component: NewPostComponent,
+      },
+      {
+        path: "post/:post_id",
+        component: SinglePostComponent,
+      },
+    ],
   },
   {
     path: "**",
