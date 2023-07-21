@@ -19,6 +19,7 @@ import { PageNotFoundComponent } from "./views/page-not-found/page-not-found.com
 import { NavbarHomeComponent } from "./components/navbar/navbar-home/navbar-home.component";
 import { NavbarAppComponent } from "./components/navbar/navbar-app/navbar-app.component";
 import { TweetComponent } from "./components/tweet/tweet.component";
+import { UserService } from "./services/user.service";
 
 @NgModule({
   declarations: [
@@ -37,7 +38,7 @@ import { TweetComponent } from "./components/tweet/tweet.component";
     TweetComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, ReactiveFormsModule],
-  providers: [],
+  providers: [UserService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
