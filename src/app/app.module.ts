@@ -20,6 +20,7 @@ import { NavbarHomeComponent } from "./components/navbar/navbar-home/navbar-home
 import { NavbarAppComponent } from "./components/navbar/navbar-app/navbar-app.component";
 import { TweetComponent } from "./components/tweet/tweet.component";
 import { UserService } from "./services/user.service";
+import { EditorComponent } from './components/editor/editor.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { UserService } from "./services/user.service";
     NavbarHomeComponent,
     NavbarAppComponent,
     TweetComponent,
+    EditorComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, ReactiveFormsModule],
   providers: [UserService],

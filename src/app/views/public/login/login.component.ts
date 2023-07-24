@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders, HttpResponse } from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 import { Component, OnInit, inject } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
@@ -17,9 +17,8 @@ export class LoginComponent implements OnInit {
 
   userService = inject(UserService);
 
-  loginFormBuilder = inject(FormBuilder);
+  formBuilder = inject(FormBuilder);
   loginFormGroup!: FormGroup;
-  signupFormBuilder = inject(FormBuilder);
   signupFormGroup!: FormGroup;
 
   usernameTaken: boolean = false;
@@ -31,9 +30,9 @@ export class LoginComponent implements OnInit {
   }
 
   createLoginForm(): FormGroup {
-    return this.loginFormBuilder.group({
-      username: this.loginFormBuilder.control<string>("", [Validators.required]),
-      password: this.loginFormBuilder.control<string>("", [
+    return this.formBuilder.group({
+      username: this.formBuilder.control<string>("", [Validators.required]),
+      password: this.formBuilder.control<string>("", [
         Validators.required,
         Validators.minLength(8),
       ]),
@@ -41,10 +40,10 @@ export class LoginComponent implements OnInit {
   }
 
   createSignupForm(): FormGroup {
-    return this.loginFormBuilder.group({
-      username: this.loginFormBuilder.control<string>("", [Validators.required]),
-      email: this.loginFormBuilder.control<string>("", [Validators.required, Validators.email]),
-      password: this.loginFormBuilder.control<string>("", [
+    return this.formBuilder.group({
+      username: this.formBuilder.control<string>("", [Validators.required]),
+      email: this.formBuilder.control<string>("", [Validators.required, Validators.email]),
+      password: this.formBuilder.control<string>("", [
         Validators.required,
         Validators.minLength(8),
       ]),
@@ -55,7 +54,17 @@ export class LoginComponent implements OnInit {
     let loginData: LoginData = this.loginFormGroup.value as LoginData;
     console.log("LOGIN DATA: ", loginData);
 
-    // firstValueFrom()
+    firstValueFrom(this.userService.loginUser(loginData))
+      .then((res) => {
+        console.log("RESPONSE: ", res);
+        // need to verify that userlogin in response is true,
+        // create jwt, then redirect
+        this.router.navigate(["/app/feed"]);
+      })
+      .catch((err) => {
+        // console.log(err);
+        alert(err.error.error);
+      });
   }
 
   userSignup(): void {
@@ -65,10 +74,12 @@ export class LoginComponent implements OnInit {
     firstValueFrom(this.userService.registerUser(signupData))
       .then((res) => {
         console.log("RESPONSE: ", res);
-        this.router.navigate(["/feed"]);
+        // need to verify that userlogin in response is true,
+        // create jwt, then redirect
+        this.router.navigate(["/app/feed"]);
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
         alert(err.error.error);
       });
   }

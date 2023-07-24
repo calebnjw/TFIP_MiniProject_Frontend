@@ -1,1 +1,27 @@
-<p>navbar-app works!</p>
+<nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" [routerLink]="['/']">NOT THREADS</a>
+    <!-- <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button> -->
+    <div class="d-flex" id="navbarSupportedContent">
+      <div class="btn-group btn-group-sm" role="group">
+        <button type="button" class="btn btn-outline-light" [routerLink]="['/app']">Home</button>
+        <button type="button" class="btn btn-outline-light" [routerLink]="['/user/test']">
+          Profile
+        </button>
+        <button type="button" class="btn btn-outline-light" [routerLink]="['/logout']">
+          Logout
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>

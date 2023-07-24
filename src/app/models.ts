@@ -9,6 +9,11 @@ export interface SignupData {
   password: string;
 }
 
+export interface PostData {
+  post_content: string;
+  image_bytes: string;
+}
+
 export interface User {
   user_id: string;
   username: string;
