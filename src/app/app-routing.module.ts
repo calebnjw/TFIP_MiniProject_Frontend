@@ -41,6 +41,7 @@ const routes: Routes = [
       { path: "", redirectTo: "feed", pathMatch: "full" },
       {
         path: "feed",
+        title: "Not Threads",
         component: FeedComponent,
       },
       {
