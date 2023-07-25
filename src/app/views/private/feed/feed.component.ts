@@ -22,10 +22,10 @@ export class FeedComponent implements OnInit {
   feedLoading: boolean = false;
 
   ngOnInit(): void {
-    this.getPosts();
+    this.getFeed();
   }
 
-  getPosts() {
+  getFeed() {
     this.feedLoading = true;
     this.postService.getFeed().subscribe({
       next: (response) => {

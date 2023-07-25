@@ -12,6 +12,8 @@ export class UserService {
 
   cookieService = inject(CookieService);
 
+  serverUrl: string = "https://notthreadsbackend.calebnjw.com/api/user/";
+
   // user!: User;
   // profile!: Profile;
   // usernameTaken: boolean = false;
@@ -20,26 +22,20 @@ export class UserService {
     const headers = new HttpHeaders()
       .set("Content-Type", "application/json")
       .set("Accept", "application/json");
-    return this.http.post<{ userLogin: boolean; user: User }>(
-      "http://localhost:8080/api/user/login",
-      loginData,
-      {
-        headers,
-      }
-    );
+    const url = this.serverUrl + "login";
+    return this.http.post<{ userLogin: boolean; user: User }>(url, loginData, {
+      headers,
+    });
   }
 
   registerUser(signupData: SignupData): Observable<any> {
     const headers = new HttpHeaders()
       .set("Content-Type", "application/json")
       .set("Accept", "application/json");
-    return this.http.post<{ userLogin: boolean; user: User }>(
-      "http://localhost:8080/api/user/create",
-      signupData,
-      {
-        headers,
-      }
-    );
+    const url = this.serverUrl + "create";
+    return this.http.post<{ userLogin: boolean; user: User }>(url, signupData, {
+      headers,
+    });
   }
 
   logoutUser(): void {
@@ -57,8 +53,9 @@ export class UserService {
 
   // async checkUsername(username: string): Promise<any> {
   //   const headers = new HttpHeaders().set("Accept", "application/json");
+  //   url = this.serverUrl + "find/username/" + username;
   //   await this.http
-  //     .get<any>("http://localhost:8080/api/user/find/username/" + username, {
+  //     .get<any>(url, {
   //       headers,
   //     })
   //     .then((res: any) => {
@@ -72,8 +69,9 @@ export class UserService {
   // checkEmail(email: string): boolean {
   //   let emailTaken: boolean = false;
   //   const headers = new HttpHeaders().set("Accept", "application/json");
+  //   url = this.serverUrl + "find/email/" + email;
   //   this.http
-  //     .get("http://localhost:8080/api/user/find/email/" + email, {
+  //     .get(url, {
   //       headers,
   //     })
   //     .subscribe((res: any) => {

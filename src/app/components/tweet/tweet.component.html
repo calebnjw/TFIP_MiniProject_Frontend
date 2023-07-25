@@ -1,4 +1,4 @@
-<div class="card mb-3">
+<div *ngIf="postData; else genericQuote" class="card mb-3" (click)="goToPost()">
   <div class="card-header">
     {{ postData.post_date }}
   </div>
@@ -9,3 +9,14 @@
     </blockquote>
   </div>
 </div>
+<ng-template #genericQuote>
+  <div class="card mb-3">
+    <div class="card-header">Today's Quote</div>
+    <div class="card-body">
+      <blockquote class="blockquote mb-0">
+        <p>Do or do not. There is no try.</p>
+        <footer class="blockquote-footer">Yoda</footer>
+      </blockquote>
+    </div>
+  </div>
+</ng-template>

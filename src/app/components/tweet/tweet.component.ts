@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, Input, OnInit, inject } from "@angular/core";
+import { Router } from "@angular/router";
 import { Post } from "src/app/models";
 
 @Component({
@@ -7,9 +8,15 @@ import { Post } from "src/app/models";
   styleUrls: ["./tweet.component.css"],
 })
 export class TweetComponent implements OnInit {
+  router = inject(Router);
+
   @Input() postData: Post;
 
   constructor() {}
 
   ngOnInit(): void {}
+
+  goToPost(): void {
+    this.router.navigate(["app/post/", this.postData.post_id]);
+  }
 }

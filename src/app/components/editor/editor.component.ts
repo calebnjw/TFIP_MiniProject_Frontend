@@ -1,5 +1,5 @@
 import { HttpClient } from "@angular/common/http";
-import { Component, OnInit, inject } from "@angular/core";
+import { Component, EventEmitter, OnInit, Output, inject } from "@angular/core";
 import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { CookieService } from "ngx-cookie-service";
@@ -13,6 +13,8 @@ import { PostService } from "src/app/services/post.service";
   styleUrls: ["./editor.component.css"],
 })
 export class EditorComponent implements OnInit {
+  @Output() postCreated = new EventEmitter();
+
   router = inject(Router);
   http = inject(HttpClient);
 
@@ -54,22 +56,18 @@ export class EditorComponent implements OnInit {
 
     console.log("POST DATA: ", postData);
 
-    let postCreated = false;
     let waiting = true;
 
-    this.postService.createPost(postData).subscribe((response) => {
-      console.log(response.postCreated);
-      waiting = false;
-      postCreated = response.postCreated;
+    this.postService.createPost(postData).subscribe({
+      next: (response) => {
+        console.log("POST CREATED: ", response.postCreated);
+        waiting = false;
+        this.postFormGroup.reset();
+        this.postCreated.emit();
+      },
+      error: (error) => {
+        console.log(error.error);
+      },
     });
-
-    if (!waiting && postCreated) {
-      this.router.navigate(["/app/feed"]);
-      alert("Post created.");
-    }
-
-    if (!waiting && !postCreated) {
-      alert("Failed to create post.");
-    }
   }
 }
