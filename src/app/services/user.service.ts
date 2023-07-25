@@ -2,10 +2,15 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable, inject } from "@angular/core";
 import { LoginData, Profile, SignupData, User } from "../models";
 import { Observable } from "rxjs";
+import { CookieService } from "ngx-cookie-service";
+import { Router } from "@angular/router";
 
 @Injectable()
 export class UserService {
+  router = inject(Router);
   http = inject(HttpClient);
+
+  cookieService = inject(CookieService);
 
   // user!: User;
   // profile!: Profile;
@@ -68,6 +73,8 @@ export class UserService {
 
   logoutUser(): void {
     // clear cookies
+    this.cookieService.deleteAll();
+    this.router.navigate(["/"]);
   }
 
   deleteUser(): boolean {

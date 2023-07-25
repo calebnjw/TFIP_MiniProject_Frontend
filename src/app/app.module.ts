@@ -1,5 +1,6 @@
 import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
+import { CookieService } from "ngx-cookie-service";
 import { HttpClientModule } from "@angular/common/http";
 
 import { AppComponent } from "./app.component";
@@ -20,7 +21,7 @@ import { NavbarHomeComponent } from "./components/navbar/navbar-home/navbar-home
 import { NavbarAppComponent } from "./components/navbar/navbar-app/navbar-app.component";
 import { TweetComponent } from "./components/tweet/tweet.component";
 import { UserService } from "./services/user.service";
-import { EditorComponent } from './components/editor/editor.component';
+import { EditorComponent } from "./components/editor/editor.component";
 
 @NgModule({
   declarations: [
@@ -40,7 +41,7 @@ import { EditorComponent } from './components/editor/editor.component';
     EditorComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, ReactiveFormsModule],
-  providers: [UserService],
+  providers: [CookieService, UserService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

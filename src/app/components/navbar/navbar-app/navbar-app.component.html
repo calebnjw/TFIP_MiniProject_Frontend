@@ -18,9 +18,7 @@
         <button type="button" class="btn btn-outline-light" [routerLink]="['/app/user/test']">
           Profile
         </button>
-        <button type="button" class="btn btn-outline-light" [routerLink]="['/logout']">
-          Logout
-        </button>
+        <button type="button" class="btn btn-outline-light" (click)="logoutUser()">Logout</button>
       </div>
     </div>
   </div>

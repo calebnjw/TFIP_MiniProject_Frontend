@@ -2,7 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Component, OnInit, inject } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
-import { firstValueFrom } from "rxjs";
+import { CookieService } from "ngx-cookie-service";
 import { LoginData, SignupData } from "src/app/models";
 import { UserService } from "src/app/services/user.service";
 
@@ -16,6 +16,7 @@ export class LoginComponent implements OnInit {
   http = inject(HttpClient);
 
   userService = inject(UserService);
+  cookieService = inject(CookieService);
 
   formBuilder = inject(FormBuilder);
   loginFormGroup!: FormGroup;
@@ -58,6 +59,10 @@ export class LoginComponent implements OnInit {
       next: (response) => {
         console.log("RESPONSE: ", response);
         console.log("USER: ", response.user);
+        this.cookieService.set("loggedIn", "true");
+        this.cookieService.set("userId", response.user.userId);
+        console.log(this.cookieService.get("loggedIn"));
+        console.log(this.cookieService.get("userId"));
         // need to figure out how to store user information in the app
         // need to verify that userlogin in response is true,
         // create jwt, then redirect
