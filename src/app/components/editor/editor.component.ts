@@ -1,6 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Component, OnInit, inject } from "@angular/core";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { firstValueFrom } from "rxjs";
 import { Post, PostData } from "src/app/models";
@@ -12,13 +12,15 @@ import { PostService } from "src/app/services/post.service";
   styleUrls: ["./editor.component.css"],
 })
 export class EditorComponent implements OnInit {
-  formBuilder = inject(FormBuilder);
-  postFormGroup!: FormGroup;
+  router = inject(Router);
+  http = inject(HttpClient);
 
   postService = inject(PostService);
 
-  router = inject(Router);
-  http = inject(HttpClient);
+  formBuilder = inject(FormBuilder);
+  postFormGroup!: FormGroup;
+
+  postImage = null;
 
   ngOnInit(): void {
     this.postFormGroup = this.createPostForm();
@@ -26,14 +28,28 @@ export class EditorComponent implements OnInit {
 
   createPostForm(): FormGroup {
     return this.formBuilder.group({
-      post_content: this.formBuilder.control<string>("", [Validators.required]),
-      password: this.formBuilder.control<string>("", []),
+      post_content: new FormControl("", [Validators.required]),
+      post_image: new FormControl({ value: null, disabled: true }, []), // image bytes?
     });
   }
 
+  onFileSelect(event: any): void {
+    console.log("FILES: ", event.target.files);
+    if (event.target.files && event.target.files.length) {
+      const file = event.target.files[0];
+      this.postImage = file;
+    }
+  }
+
   submitPost(): void {
-    let postData: PostData = this.postFormGroup.value as PostData;
-    console.log("SINGUP DATA: ", postData);
+    let postData: FormData = new FormData();
+
+    // images can be transferred to the backend okay,
+    // but don't have time to figure out how to upload images to a separate cloud
+    postData.append("post_content", this.postFormGroup.value.post_content);
+    postData.append("image", this.postImage ? this.postImage : "");
+
+    console.log("POST DATA: ", postData);
 
     let postCreated = false;
     let waiting = true;

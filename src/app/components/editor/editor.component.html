@@ -1,6 +1,26 @@
 <form class="form-floating" [formGroup]="postFormGroup" (submit)="submitPost()">
-  <textarea class="form-control" name="" id="post_content" style="height: 10rem"></textarea>
+  <textarea
+    class="form-control mb-3"
+    name=""
+    id="post_content"
+    formControlName="post_content"
+    style="height: 10rem"
+  ></textarea>
   <label for="post_content">Write your post here</label>
-  <input type="file" src="" alt="" />
-  <input type="submit" value="Post" />
+  <div class="d-flex justify-content-between">
+    <input
+      class="btn btn-outline-primary text-start flex-fill me-3"
+      type="file"
+      accept="image/png, image/jpeg, image/jpg"
+      formControlName="post_image"
+      (change)="onFileSelect($event)"
+      [disabled]="true"
+    />
+    <input
+      class="btn btn-primary ms-auto"
+      type="submit"
+      value="Post"
+      [disabled]="postFormGroup.invalid"
+    />
+  </div>
 </form>

@@ -44,18 +44,26 @@ export class UserService {
     const headers = new HttpHeaders()
       .set("Content-Type", "application/json")
       .set("Accept", "application/json");
-    return this.http.post("http://localhost:8080/api/user/login", loginData, {
-      headers,
-    });
+    return this.http.post<{ userLogin: boolean; user: User }>(
+      "http://localhost:8080/api/user/login",
+      loginData,
+      {
+        headers,
+      }
+    );
   }
 
   registerUser(signupData: SignupData): Observable<any> {
     const headers = new HttpHeaders()
       .set("Content-Type", "application/json")
       .set("Accept", "application/json");
-    return this.http.post("http://localhost:8080/api/user/create", signupData, {
-      headers,
-    });
+    return this.http.post<{ userLogin: boolean; user: User }>(
+      "http://localhost:8080/api/user/create",
+      signupData,
+      {
+        headers,
+      }
+    );
   }
 
   logoutUser(): void {

@@ -54,34 +54,49 @@ export class LoginComponent implements OnInit {
     let loginData: LoginData = this.loginFormGroup.value as LoginData;
     console.log("LOGIN DATA: ", loginData);
 
-    firstValueFrom(this.userService.loginUser(loginData))
-      .then((res) => {
-        console.log("RESPONSE: ", res);
+    this.userService.loginUser(loginData).subscribe({
+      next: (response) => {
+        console.log("RESPONSE: ", response);
+        console.log("USER: ", response.user);
+        // need to figure out how to store user information in the app
         // need to verify that userlogin in response is true,
         // create jwt, then redirect
         this.router.navigate(["/app/feed"]);
-      })
-      .catch((err) => {
-        // console.log(err);
-        alert(err.error.error);
-      });
+      },
+      error: (error) => {
+        // console.log(error);
+        alert(error.error.error);
+      },
+    });
   }
 
   userSignup(): void {
     let signupData: SignupData = this.signupFormGroup.value as SignupData;
     console.log("SINGUP DATA: ", signupData);
 
-    firstValueFrom(this.userService.registerUser(signupData))
-      .then((res) => {
-        console.log("RESPONSE: ", res);
+    // firstValueFrom(this.userService.registerUser(signupData))
+    //   .then((res) => {
+    //     console.log("RESPONSE: ", res);
+    //     // need to verify that userlogin in response is true,
+    //     // create jwt, then redirect
+    //     this.router.navigate(["/app/feed"]);
+    //   })
+    //   .catch((err) => {
+    //     // console.log(err);
+    //     alert(err.error.error);
+    //   });
+    this.userService.registerUser(signupData).subscribe({
+      next: (response) => {
+        console.log("RESPONSE: ", response);
         // need to verify that userlogin in response is true,
         // create jwt, then redirect
         this.router.navigate(["/app/feed"]);
-      })
-      .catch((err) => {
-        // console.log(err);
-        alert(err.error.error);
-      });
+      },
+      error: (error) => {
+        // console.log(error);
+        alert(error.error.error);
+      },
+    });
   }
 
   // TODO:

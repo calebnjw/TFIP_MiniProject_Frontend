@@ -1,2 +1,16 @@
-<app-editor></app-editor>
-<p>feed works!</p>
+<div class="row">
+  <div class="col-md-3">
+    <p>sidebar goes here.</p>
+  </div>
+  <div class="col-md-6">
+    <div class="mb-4">
+      <app-editor></app-editor>
+    </div>
+    <hr />
+    <div *ngIf="feedLoading" class="alert alert-info">Loading posts...</div>
+    <div *ngIf="posts.length == 0 && !feedLoading">No posts to show. Try creating one.</div>
+  </div>
+  <div class="col-md-3">
+    <p>profile information goes here.</p>
+  </div>
+</div>
