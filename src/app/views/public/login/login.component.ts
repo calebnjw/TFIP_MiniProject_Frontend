@@ -57,12 +57,8 @@ export class LoginComponent implements OnInit {
 
     this.userService.loginUser(loginData).subscribe({
       next: (response) => {
-        console.log("RESPONSE: ", response);
-        console.log("USER: ", response.user);
         this.cookieService.set("loggedIn", "true");
         this.cookieService.set("userId", response.user.userId);
-        console.log(this.cookieService.get("loggedIn"));
-        console.log(this.cookieService.get("userId"));
         // need to figure out how to store user information in the app
         // need to verify that userlogin in response is true,
         // create jwt, then redirect
@@ -92,9 +88,8 @@ export class LoginComponent implements OnInit {
     //   });
     this.userService.registerUser(signupData).subscribe({
       next: (response) => {
-        console.log("RESPONSE: ", response);
-        // need to verify that userlogin in response is true,
-        // create jwt, then redirect
+        this.cookieService.set("loggedIn", "true");
+        this.cookieService.set("userId", response.user.userId);
         this.router.navigate(["/app/feed"]);
       },
       error: (error) => {

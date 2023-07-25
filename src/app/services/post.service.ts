@@ -1,21 +1,21 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable, inject } from "@angular/core";
-import { Post, PostData } from "../models";
 import { Observable, map } from "rxjs";
+import { CookieService } from "ngx-cookie-service";
 
 @Injectable()
 export class PostService {
   http = inject(HttpClient);
+  cookieService = inject(CookieService);
+
+  serverUrl: string = "http://localhost:8080/api/post/";
 
   createPost(postData: FormData): Observable<any> {
     const headers = new HttpHeaders().set("Accept", "application/json");
-    return this.http.post<{ postCreated: boolean }>(
-      "http://localhost:8080/api/post/create",
-      postData,
-      {
-        headers,
-      }
-    );
+    const url = this.serverUrl + "create";
+    return this.http.post<{ postCreated: boolean }>(url, postData, {
+      headers,
+    });
   }
 
   // getPost(post_id: string): Post {
@@ -32,12 +32,13 @@ export class PostService {
     const headers = new HttpHeaders()
       .set("Content-Type", "application/json")
       .set("Accept", "application/json");
-    return this.http.get<{ postCreated: boolean }>("http://localhost:8080/api/post/find/all", {
+    const url = this.serverUrl + "find?feed=true&userId=" + this.cookieService.get("userId");
+    return this.http.get(url, {
       headers,
     });
   }
 
-  deletePost(user_id: string, post_id: string): boolean {
+  deletePost(userId: string, post_id: string): boolean {
     return true;
   }
 }

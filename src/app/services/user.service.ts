@@ -16,35 +16,6 @@ export class UserService {
   // profile!: Profile;
   // usernameTaken: boolean = false;
 
-  // async checkUsername(username: string): Promise<any> {
-  //   const headers = new HttpHeaders().set("Accept", "application/json");
-  //   await this.http
-  //     .get<any>("http://localhost:8080/api/user/find/username/" + username, {
-  //       headers,
-  //     })
-  //     .then((res: any) => {
-  //       this.usernameTaken = res.userExists;
-  //       console.log("RESPONSE INSIDE: ", usernameTaken);
-  //     });
-
-  //   return usernameTaken;
-  // }
-
-  // checkEmail(email: string): boolean {
-  //   let emailTaken: boolean = false;
-  //   const headers = new HttpHeaders().set("Accept", "application/json");
-  //   this.http
-  //     .get("http://localhost:8080/api/user/find/email/" + email, {
-  //       headers,
-  //     })
-  //     .subscribe((res: any) => {
-  //       emailTaken = res.userExists;
-  //       console.log("RESPONSE: ", res.userExists);
-  //     });
-
-  //   return emailTaken;
-  // }
-
   loginUser(loginData: LoginData): Observable<any> {
     const headers = new HttpHeaders()
       .set("Content-Type", "application/json")
@@ -79,6 +50,37 @@ export class UserService {
 
   deleteUser(): boolean {
     // send request to delete currently authenticated user
+    this.cookieService.deleteAll();
+    this.router.navigate(["/"]);
     return true;
   }
+
+  // async checkUsername(username: string): Promise<any> {
+  //   const headers = new HttpHeaders().set("Accept", "application/json");
+  //   await this.http
+  //     .get<any>("http://localhost:8080/api/user/find/username/" + username, {
+  //       headers,
+  //     })
+  //     .then((res: any) => {
+  //       this.usernameTaken = res.userExists;
+  //       console.log("RESPONSE INSIDE: ", usernameTaken);
+  //     });
+
+  //   return usernameTaken;
+  // }
+
+  // checkEmail(email: string): boolean {
+  //   let emailTaken: boolean = false;
+  //   const headers = new HttpHeaders().set("Accept", "application/json");
+  //   this.http
+  //     .get("http://localhost:8080/api/user/find/email/" + email, {
+  //       headers,
+  //     })
+  //     .subscribe((res: any) => {
+  //       emailTaken = res.userExists;
+  //       console.log("RESPONSE: ", res.userExists);
+  //     });
+
+  //   return emailTaken;
+  // }
 }

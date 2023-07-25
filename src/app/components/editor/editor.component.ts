@@ -2,6 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Component, OnInit, inject } from "@angular/core";
 import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
+import { CookieService } from "ngx-cookie-service";
 import { firstValueFrom } from "rxjs";
 import { Post, PostData } from "src/app/models";
 import { PostService } from "src/app/services/post.service";
@@ -16,6 +17,7 @@ export class EditorComponent implements OnInit {
   http = inject(HttpClient);
 
   postService = inject(PostService);
+  cookieService = inject(CookieService);
 
   formBuilder = inject(FormBuilder);
   postFormGroup!: FormGroup;
@@ -46,6 +48,7 @@ export class EditorComponent implements OnInit {
 
     // images can be transferred to the backend okay,
     // but don't have time to figure out how to upload images to a separate cloud
+    postData.append("user_id", this.cookieService.get("userId"));
     postData.append("post_content", this.postFormGroup.value.post_content);
     postData.append("image", this.postImage ? this.postImage : "");
 

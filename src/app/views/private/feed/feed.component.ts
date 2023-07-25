@@ -1,6 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Component, OnInit, inject } from "@angular/core";
 import { Router } from "@angular/router";
+import { CookieService } from "ngx-cookie-service";
 
 import { Post } from "src/app/models";
 import { PostService } from "src/app/services/post.service";
@@ -29,7 +30,8 @@ export class FeedComponent implements OnInit {
     this.postService.getFeed().subscribe({
       next: (response) => {
         this.feedLoading = false;
-        console.log(response);
+        this.posts = response.posts;
+        console.log("POSTS: ", this.posts[0]);
       },
       error: (error) => {
         this.feedLoading = false;

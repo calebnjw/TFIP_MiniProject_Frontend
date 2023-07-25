@@ -9,6 +9,9 @@
     <hr />
     <div *ngIf="feedLoading" class="alert alert-info">Loading posts...</div>
     <div *ngIf="posts.length == 0 && !feedLoading">No posts to show. Try creating one.</div>
+    <div *ngIf="posts.length">
+      <app-tweet *ngFor="let post of posts" [postData]="post"></app-tweet>
+    </div>
   </div>
   <div class="col-md-3">
     <p>profile information goes here.</p>
