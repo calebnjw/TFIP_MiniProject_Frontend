@@ -12,7 +12,7 @@ export class UserService {
 
   cookieService = inject(CookieService);
 
-  serverUrl: string = "https://mini-project-backend-production.up.railway.app/api/user/";
+  serverUrl: string = "https://notthreadsbackend.calebnjw.com/api/user/";
 
   // user!: User;
   // profile!: Profile;
