@@ -1,11 +1,11 @@
-<div *ngIf="postData; else genericQuote" class="card mb-3" (click)="goToPost()">
+<div *ngIf="post; else genericQuote" class="card mb-3" (click)="goToPost()">
   <div class="card-header">
-    {{ postData.post_date }}
+    {{ post.post_date }}
   </div>
   <div class="card-body">
     <blockquote class="blockquote mb-0">
-      <p>{{ postData.post_content }}</p>
-      <img *ngIf="postData.image_url != ''" src="{{ postData.image_url }}" alt="" srcset="" />
+      <p>{{ post.post_content }}</p>
+      <img *ngIf="post.image_url != ''" src="{{ post.image_url }}" alt="" srcset="" />
     </blockquote>
   </div>
 </div>
