@@ -18,6 +18,10 @@ export class SinglePostComponent implements OnInit {
   post!: Post;
 
   ngOnInit(): void {
+    this.getPost();
+  }
+
+  getPost(): void {
     this.postService.getPost(this.post_id.toString());
   }
 
