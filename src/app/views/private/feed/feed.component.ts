@@ -25,7 +25,7 @@ export class FeedComponent implements OnInit {
     this.getFeed();
   }
 
-  getFeed() {
+  getFeed(): void {
     this.feedLoading = true;
     this.postService.getFeed().subscribe({
       next: (response) => {
