@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable, inject } from "@angular/core";
 import { Observable, map } from "rxjs";
 import { CookieService } from "ngx-cookie-service";
+import { Post } from "../models";
 
 @Injectable()
 export class PostService {
@@ -18,11 +19,15 @@ export class PostService {
     });
   }
 
-  // getPost(post_id: string): Post {
-  //   let post: Post;
-  //   // get single post
-  //   return post;
-  // }
+  getPost(post_id: string): Observable<any> {
+    const headers = new HttpHeaders()
+      .set("Content-Type", "application/json")
+      .set("Accept", "application/json");
+    const url = this.serverUrl + "find/" + post_id;
+    return this.http.get(url, {
+      headers,
+    });
+  }
 
   // getUserPosts(): Observable<any> {
   //   // get all posts from specific user

@@ -10,13 +10,13 @@ import { Post } from "src/app/models";
 export class TweetComponent implements OnInit {
   router = inject(Router);
 
-  @Input() postData: Post;
+  @Input() post!: Post;
 
   constructor() {}
 
   ngOnInit(): void {}
 
   goToPost(): void {
-    this.router.navigate(["app/post/", this.postData.post_id]);
+    this.router.navigate(["app/post/", this.post.post_id]);
   }
 }

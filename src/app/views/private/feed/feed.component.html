@@ -10,7 +10,7 @@
     <div *ngIf="feedLoading" class="alert alert-info">Loading posts...</div>
     <div *ngIf="posts.length == 0 && !feedLoading">No posts to show. Try creating one.</div>
     <div *ngIf="posts.length">
-      <app-tweet *ngFor="let post of posts" [postData]="post"></app-tweet>
+      <app-tweet *ngFor="let post of posts" [post]="post"></app-tweet>
     </div>
   </div>
   <div class="col-md-1 col-lg-3">
