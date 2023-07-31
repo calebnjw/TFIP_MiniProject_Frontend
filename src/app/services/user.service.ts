@@ -12,7 +12,8 @@ export class UserService {
 
   cookieService = inject(CookieService);
 
-  serverUrl: string = "https://notthreadsbackend.calebnjw.com/api/user/";
+  // serverUrl: string = "https://notthreadsbackend.calebnjw.com/api/user/";
+  serverUrl: string = "http://localhost:8080/api/user/";
 
   // user!: User;
   // profile!: Profile;

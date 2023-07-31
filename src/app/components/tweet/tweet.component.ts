@@ -17,6 +17,6 @@ export class TweetComponent implements OnInit {
   ngOnInit(): void {}
 
   goToPost(): void {
-    this.router.navigate(["app/post/", this.post.post_id]);
+    this.router.navigate(["app/post/", this.post.postId]);
   }
 }

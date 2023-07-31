@@ -31,9 +31,9 @@ export interface Profile {
 }
 
 export interface Post {
-  post_id: string;
-  user_id: string;
-  post_date: Date;
-  post_content: string;
-  image_url: string;
+  postId: string;
+  userId: string;
+  postDate: Date;
+  postContent: string;
+  imageUrl: string;
 }

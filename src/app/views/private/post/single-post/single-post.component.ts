@@ -14,15 +14,31 @@ export class SinglePostComponent implements OnInit {
 
   postService = inject(PostService);
 
-  post_id = Number(this.route.snapshot.paramMap.get("post_id"));
+  post_id: string | null = this.route.snapshot.paramMap.get("post_id");
   post!: Post;
 
+  postLoading: boolean = false;
+
   ngOnInit(): void {
-    this.getPost();
+    console.log("POST_ID: ", this.post_id);
+    if (this.post_id) {
+      this.getPost(this.post_id);
+    }
   }
 
-  getPost(): void {
-    this.postService.getPost(this.post_id.toString());
+  getPost(post_id: string): void {
+    this.postLoading = true;
+    this.postService.getSinglePost(post_id).subscribe({
+      next: (response) => {
+        this.postLoading = false;
+        this.post = response.post;
+        console.log("POST: ", response.post);
+      },
+      error: (error) => {
+        this.postLoading = false;
+        console.log("error");
+      },
+    });
   }
 
   goBack(): void {
