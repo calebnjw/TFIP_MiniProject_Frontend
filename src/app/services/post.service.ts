@@ -9,8 +9,8 @@ export class PostService {
   http = inject(HttpClient);
   cookieService = inject(CookieService);
 
-  // serverUrl: string = "https://notthreadsbackend.calebnjw.com/api/post/";
-  serverUrl: string = "http://localhost:8080/api/post/";
+  serverUrl: string = "https://notthreadsbackend.calebnjw.com/api/post/";
+  // serverUrl: string = "http://localhost:8080/api/post/";
 
   createPost(postData: FormData): Observable<any> {
     const headers = new HttpHeaders().set("Accept", "application/json");
