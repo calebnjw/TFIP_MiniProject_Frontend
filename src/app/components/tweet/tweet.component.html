@@ -3,9 +3,9 @@
     <div class="post-date" (click)="goToPost()">
       {{ post.postDate }}
     </div>
-    <div>
+    <div class="dropend">
       <div
-        class="dropdown-toggle options-icon"
+        class="options-icon"
         data-bs-toggle="dropdown"
         data-bs-auto-close="true"
         aria-expanded="false"
@@ -13,7 +13,11 @@
         <img src="../../../assets/ellipsis-solid.svg" alt="three dots" />
       </div>
       <ul class="dropdown-menu">
-        <li class="text-danger"><div class="dropdown-item" (click)="deletePost()">Delete</div></li>
+        <li><div class="dropdown-item" (click)="sharePost()">Share</div></li>
+        <li><hr class="dropdown-divider" /></li>
+        <li>
+          <div class="dropdown-item text-danger" (click)="deletePost()">Delete</div>
+        </li>
       </ul>
     </div>
   </div>
