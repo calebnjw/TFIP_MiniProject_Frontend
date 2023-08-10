@@ -1,0 +1,29 @@
+.post-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.post-date {
+  flex: auto;
+}
+
+.options-icon * {
+  height: 30px;
+  width: 30px;
+  border-radius: 5px;
+  align-items: flex-end;
+  padding: 7px;
+  cursor: pointer;
+}
+
+.options-icon :hover {
+  background-color: lightgray;
+}
+
+.options-icon :active {
+  background-color: lightgray;
+  border: 1px solid gray;
+  box-sizing: border-box;
+  padding: 6px;
+}

@@ -1,14 +1,30 @@
-<div *ngIf="post; else genericQuote" class="card mb-3" (click)="goToPost()">
-  <div class="card-header">
-    {{ post.postDate }}
+<div *ngIf="post; else genericQuote" class="card mb-3">
+  <div class="card-header post-header">
+    <div class="post-date" (click)="goToPost()">
+      {{ post.postDate }}
+    </div>
+    <div>
+      <div
+        class="dropdown-toggle options-icon"
+        data-bs-toggle="dropdown"
+        data-bs-auto-close="true"
+        aria-expanded="false"
+      >
+        <img src="../../../assets/ellipsis-solid.svg" alt="three dots" />
+      </div>
+      <ul class="dropdown-menu">
+        <li class="text-danger"><div class="dropdown-item" (click)="deletePost()">Delete</div></li>
+      </ul>
+    </div>
   </div>
-  <div class="card-body">
+  <div class="card-body" (click)="goToPost()">
     <blockquote class="blockquote mb-0">
       <p>{{ post.postContent }}</p>
       <img *ngIf="post.imageUrl != ''" src="{{ post.imageUrl }}" alt="" srcset="" />
     </blockquote>
   </div>
 </div>
+
 <ng-template #genericQuote>
   <div class="card mb-3">
     <div class="card-header">Today's Quote</div>
